@@ -34,20 +34,38 @@ def calculate():
     values = get_values()
     result = fun(values[0], values[1], values[2], values[3])
     print("SL percent: ", result, "%")
-    option = int(
-        input("Select an option: \n1) SHORT\n2) LONG\n0) Salir\n"))
     return option
 
+def get_option():
+    option = int(
+    input("Select an option: \n1) SHORT\n2) LONG\n3) PERCENTAGE\n0) Salir\n"))
+    return option
 
-option = int(input("Select an option: \n1) SHORT\n2) LONG\n0) Salir\n"))
+def difference_in_percentage():
+
+  buy_price = float(input("Entry buy price: "))
+  sell_price = float(input("Entry sell price: "))
+  leverage = int(input("Enter leverage: "))
+  difference = sell_price - buy_price
+  percentage = (difference / buy_price * 100) * leverage
+  print("The difference in % is", percentage, "%")
+  option = get_option()
+  return option
+
+option = int(input("Select an option: \n1) SHORT\n2) LONG\n3) PERCENTAGE\n0) Salir\n"))
 
 while option != 0:
     if option == 1:
         fun = calculate_SL_SHORT
         print("Calculating fot SHORT")
-        option = calculate()
+        calculate()
+        option = get_option()
 
     elif option == 2:
         fun = calculate_SL_LONG
         print("Calculating for LONG")
-        option = calculate()
+        calculate()
+        option = get_option()
+    elif option == 3:
+        percentage = difference_in_percentage()
+
